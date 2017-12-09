@@ -1,0 +1,229 @@
+<apex:page standardController="Feedback__c" extensions="ctr_feedbackform" applyHtmlTag="true" sidebar="false" showHeader="false" standardStylesheets="false"  doctype="HTML-5.0">
+   <html>
+    
+    <head>
+    <!--js and css files-->
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />        
+       
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"/>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> 
+        <link href="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/css/bootstrap.css')}" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/dist/jquery.bootgrid.css')}" rel="stylesheet" />        
+        <script src="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/js/modernizr-2.8.1.js')}"></script>
+        <script src="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/js/bootstrap.min.js')}"></script>
+        <script src="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/js/star-rating.js')}"></script> 
+        <apex:stylesheet value="{!URLFOR($Resource.bootstrap,'bootstrap/bootstrap/css/star-rating.css')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.asset, 'asset/js/jquery.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.asset, 'asset/css/bootstrap.min.css')}"/>
+        
+        <title>Pink Blue</title>
+     <style>            
+            .msgpanel{
+                color: #3c763d;
+                background-color: #dff0d8;
+                border-color: #d6e9c6;
+                margin-top: 250px;
+                margin-left: 300px;
+            }     
+            .panel-primary> .panel-heading {
+                font-weight: bold;
+            }
+            .list{
+                width: 20%;
+                margin-left: 430px;
+            }
+            .pick{
+                margin-left: 150px;
+            }
+            .menu{
+                text-align: center;
+                cursor: pointer;
+                color: #428bca;
+                font-weight: normal;
+            }
+            .pull-left {
+                margin-top: 10px;
+            }
+            .btn-danger {
+                margin-left: 10px;
+            }
+            .fontcolor{
+                background-color: #eee;
+                color: #428bca;
+            }
+            .vertical-center {
+              min-height: 100%;
+              min-height: 50vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              display: -webkit-flex; /* For Safari */
+              -webkit-justify-content: center; /* For Safari */
+              -webkit-align-items: center; /* For Safari */
+            }
+        </style>
+          <style>
+
+.lookupInput img
+{
+    background-repeat: no-repeat;
+    margin-center: .25em;
+    vertical-align: right;
+}
+.lookupInput .disabled
+{
+    background-color: #ccc;
+}
+.lookupInput .emptyDependentLookup
+{
+    font-style: italic;
+}
+.lookupInput input[readonly]
+{
+    background-color: #e6e6e6;
+    border: 2px solid #e6e6e6;
+    color: #333;
+    cursor: default;
+}
+.lookupInput a.readOnly
+{
+    float: right;
+}
+.lookupInput span.readOnly
+{
+    display: block;
+    white-space: normal;
+}
+.lookupInput span.totalSummary
+{
+    font-weight: bold;
+}
+.inlineEditRequiredDiv .lookupInput img,.inlineEditDiv .lookupInput img
+{
+    vertical-align: middle;
+}
+.quickCreateModule .lookupInput input {
+    max-width: 155px
+}
+.lookupIcon {
+    background-image: url(/img/func_icons/util/lookup20.gif);
+    background-position: 0 0;
+    width: 20px;
+    height: 20px;
+    background-position: top left
+}
+.lookupIconOn {
+    background-image: url(/img/func_icons/util/lookup20.gif);
+    background-position: 0 0;
+    width: 20px;
+    height: 20px;
+    background-position: top right
+} 
+</style>
+
+<style>
+/* lookup field override */
+
+
+.lookupInput img {
+  float:center;
+}
+.span.lookupInput {
+  position: relative;
+  display: inherit;
+}
+.lookupInput a, .lookupInput a {
+  border: none !important;
+  background: none !important;
+}
+.radioinput input[type="radio"]{float:top;}
+
+.radioinput label{display:block;}
+
+    lor:#f2f2f2;
+    font-family:Arial, sans-serif;
+}
+
+ .left   {text-align:left;}
+ .center {text-align:center;}
+ .right  {text-align:right;}
+ .my_text{
+     font-family:  Arial, Helvetica, sans-serif
+     font-size:  60px;
+     font-weight: bold;
+     color: #337AB7;
+}
+
+.slider {
+    display: inline-block;
+    
+}
+ h3{
+     font-family:  Arial, Helvetica, sans-serif
+     font-size:  60px;
+     font-weight: bold;
+     color: #337AB7;
+               }
+               
+</style> 
+     
+    </head>
+    
+    <apex:form >
+        <apex:pageBlock >
+              <div class="vertical-center">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-sm-8 col-sm-offset-2">  
+                            <center><apex:image url="{!URLFOR($Resource.smiley,'smiley/pb.PNG')}" style="width:300px;height:60px;" /></center>
+
+                                       
+                              <div class="panel panel-primary"> 
+                                  
+                                  <div class="panel-body"> 
+                                        <div class="alert-danger">
+                                        <apex:messages />
+                                        </div> 
+                                                                    
+                                        <table border="0">
+                                            <tr>
+                                               <apex:image url="{!URLFOR($Resource.smiley,'smiley/excellent.png')}" style="padding-left:66px;" />
+                                                        
+                                                <apex:image url="{!URLFOR($Resource.smiley,'smiley/good.png')}" style="padding-left:135px;"/>
+                                                        
+                                                <apex:image url="{!URLFOR($Resource.smiley,'smiley/poor.png')}" style="padding-left:133px;"/> 
+                                                      <td class="center">
+                                                         <p>
+                                                         <apex:selectRadio value="{!feedback.PB_Survey_Result__c}" styleClass="radioinput" style="width:456px;">
+                                                           <apex:selectOptions value="{!types}"></apex:selectOptions>
+                                                         </apex:selectRadio>
+                                                         </p>
+                                                     </td> 
+                                             </tr>
+                                        </table>
+                                  </div><!-- panel- body-->
+                               </div> <!-- panel primary -->     
+                                    
+                                
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-5">
+                                     <apex:commandButton styleClass="btn btn-success" value="Save" action="{!save}" />&nbsp;&nbsp;
+                                     <apex:commandButton styleClass="btn btn-danger" value="Cancel" immediate="true" action="{!Cancel}" /> 
+                                    </div>
+                                </div> 
+                            </div> 
+                          
+                          </div>                  
+                      </div>
+                  </div>
+             
+        
+       
+     </apex:pageBlock>   
+    </apex:form>
+    <c:Feedback_vf_component ></c:Feedback_vf_component>
+    
+    </html>
+</apex:page>

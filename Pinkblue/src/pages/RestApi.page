@@ -1,0 +1,38 @@
+<apex:page >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <div>
+        <input  class="btn" value="Create Account Record" type="button" onclick="createSobjectRecord()" />
+    </div>
+    <div id="warehouseList">
+    </div>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        var sessionId = '{!$Api.Session_ID}';
+        function createSobjectRecord() {
+             var accountInfo = { "lastname" :"Vishal", "Email" : "subbareddykota5@gmaill.com", "Mobilephone" :"8885151145"};
+             var accountInfoJson = JSON.stringify(accountInfo);
+             $j.ajax({
+                type: "POST",
+                 url: "https://cs72.salesforce.com/services/data/v39.0/sobjects/Contact",
+                headers : {
+                        'Authorization' : "OAuth " + sessionId,
+                        'Content-Type' : 'application/json'
+                  },
+                crossDomain : true,
+                data: JSON.stringify(accountInfo),
+                dataType: 'json',
+                success: function (responseData, status, xhr) {
+                    
+                    console.log(responseData.id);
+                    recordId = responseData.id;
+                },
+                error: function (request, status, error) {
+                    
+                    console.log(request.responseText);
+                }
+            });
+        }
+        
+        
+    </script>
+</apex:page>

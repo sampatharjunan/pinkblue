@@ -1,0 +1,27 @@
+<apex:page controller="ShowAccWithContactController" sidebar="true" showHeader="false">
+    <apex:form >
+        <apex:pageBlock title="Accounts List">
+          <b>  <apex:outputLabel >On Clicking the Account Name you will see the Contact associated..</apex:outputLabel></b><br/><br/>
+        <apex:repeat value="{!accounts}" var="acc">
+           <b> <apex:commandLink value="{!acc.Name}" action="{!showContacts}">
+                 <apex:param name="accountId" value="{!acc.id}" assignTo="{!accountId}"/>
+                 <!--apex:outputText value="{!acc.shippingcity}"></apex:outputText-->
+            </apex:commandLink></b>
+            <br/><br/>
+        </apex:repeat>
+               
+    </apex:pageBlock>
+    <apex:pageBlock title="Contacts List" id="ContactBlock" rendered="{!conenable}"> 
+        <!--apex:pageBlockTable value="{!contacts}" var="con"-->
+        <apex:repeat value="{!contacts}" var="con">
+            <apex:outputLabel rendered="{!enable}">
+            <apex:commandLink value="{!con.name}"  action="{!createopp}" onclick="alert('Opportunity and the contact role Created')">
+            <apex:param name="contactId" value="{!con.id}" assignTo="{!contactId}"/>
+                </apex:commandLink></apex:outputLabel>
+            <apex:outputLabel value="{!con.name}" rendered="{!disable}"></apex:outputLabel>
+            <!--apex:column value="{!con.name}" headerValue="Contact Name" ></apex:column-->
+            <!--/apex:pageBlockTable--><br/>
+            </apex:repeat>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

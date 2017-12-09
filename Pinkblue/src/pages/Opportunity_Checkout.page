@@ -1,0 +1,99 @@
+<apex:page applyHtmlTag="true"  showHeader="false" applyBodyTag="true" Controller="opp_checkout">
+<style type="text/css">
+.pointer
+{
+    cursor:pointer;
+    border:1px solid #ccc;
+    padding:5px;
+}
+</style>
+
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form id="frm" rendered="{!displaylatlon}">
+    <table align="center">
+    <tr>
+        <td colspan="2">
+                <h1>Welcome </h1> Your Location is
+                <apex:outputPanel id="resultPanel">
+                 <apex:pageMessages ></apex:pageMessages>
+                 <apex:actionStatus startText="Updating..." stopText="" id="myStatus" />
+                <br />
+                </apex:outputPanel>
+        </td>
+    </tr>
+     <tr>
+        <td colspan="2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>
+                Latitude
+        </td>
+        <td>
+               <div id="startLat">     
+               </div>
+               <apex:inputHidden id="startLat" />
+               
+        </td>
+    </tr>
+     <tr>
+        <td colspan="2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>
+                Longitude
+        </td>
+        <td>
+                
+                <div id="startLon">
+                </div>
+                 <apex:inputHidden id="startLon" />
+                <br/>
+        </td>
+    </tr>
+     <tr>
+        <td colspan="2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <span class="pointer" onclick="callActionMethod()"> Check Out</span>
+            <apex:actionFunction name="echo" action="{!OppCheckoutlocation}" reRender="resultPanel" status="myStatus">
+                <apex:param name="firstParam" assignTo="{!lat}" value="" />
+                <apex:param name="secondParam" assignTo="{!lon}" value="" />
+            </apex:actionFunction>
+        </td>
+    </tr>
+</table>
+  
+    
+</apex:form>
+<script type="text/javascript">
+function callActionMethod()
+{
+  var txtVal1 = document.getElementById("{!$Component.frm.startLat}").value;
+  var txtVal2 = document.getElementById("{!$Component.frm.startLon}").value;         
+  echo(txtVal1,txtVal2);
+}
+
+ window.onload = function() {
+        var startPos;
+        var geoSuccess = function(position) {
+            startPos = position;
+            document.getElementById('startLat').innerHTML = position.coords.latitude;
+            document.getElementById('j_id0:frm:startLat').value = position.coords.latitude;
+            var latitude = startPos.coords.latitude;
+            document.getElementById('startLon').innerHTML = position.coords.longitude;
+            var long = startPos.coords.longitude;
+            document.getElementById('j_id0:frm:startLon').value = position.coords.longitude;
+            
+        };
+        navigator.geolocation.getCurrentPosition(geoSuccess);
+    };
+</script>
+
+</apex:page>

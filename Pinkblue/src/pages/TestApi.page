@@ -1,0 +1,38 @@
+<apex:page >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    
+   
+    <div>
+        <input  class="btn" value="Create Account Record" type="button" onclick="createSobjectRecord()" />
+    </div>
+    <div id="warehouseList">
+    </div>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        var sessionId = '{!$Api.Session_ID}';
+        function createSobjectRecord() {
+             var accountInfo = { "grant_type" :"password", "client_id" : "3MVG910YPh8zrcR21drrxuOGIDgk8McLQNpQ1929sp4cNN1xdZqnbxLcARgrz2wGnZNHLmBmvgaB_FQJBKrcT", "client_secret" :"1197226203689467629","username":"admin@pinkblue.com","password":"Glory#20179zKK5JYpkkvbiq58o2nhBq2d"};
+             var accountInfoJson = JSON.stringify(accountInfo);
+             $j.ajax({
+                type: "POST",
+                 url: "https://test.salesforce.com/services/oauth2/token",
+               
+                crossDomain : true,
+                data: JSON.stringify(accountInfo),
+                dataType: 'json',
+                success: function (responseData, status, xhr) {
+                    alert("hi");
+                    console.log(responseData.id);
+                    recordId = responseData.id;
+                },
+                error: function (request, status, error) {
+                    alert("by");
+                    console.log(request.responseText);
+                }
+            });
+        }
+        
+        
+    </script>
+</apex:page>

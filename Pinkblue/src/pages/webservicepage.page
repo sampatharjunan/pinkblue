@@ -1,0 +1,18 @@
+<apex:page >
+  <apex:includeScript value="/soap/ajax/25.0/connection.js"/>
+  <apex:includeScript value="/soap/ajax/25.0/apex.js"/>
+  <script type="text/javascript">
+  function callWebService(){
+      //var rId = '00110000010MIxE';
+      sforce.connection.sessionId = '{!$Api.Session_ID}';
+      var results = sforce.apex.execute("WebServiceDemoCls","getAccount");
+      var account = results[0];
+      console.log('Response is : ' + JSON.stringify(results));
+      console.log('Account Name is : ' + account.Name);
+      console.log('Account Owner Name is : ' + account.Owner.Name);
+  }
+  </script>
+  <apex:pageblock title="A WebService Demo Page" >
+      <input type="button" onclick="callWebService();" value="Call WebService" />
+  </apex:pageblock>
+</apex:page>

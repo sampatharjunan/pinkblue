@@ -1,0 +1,23 @@
+<apex:page >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+$.ajax({
+        type: "POST",
+        headers: {"Authorization": "Basic " + auth},
+        data: JSON.stringify({ "Name": mahesh }),
+        contentType: "application/x-www-form-urlencoded",
+        url: 'https://cs72.salesforce.com/services/data/v39.0/sobjects/Contact',
+        dataType: "json",
+        async: false,
+        success: OnSuccessGetHeaderDetailsCall,
+        error: OnErrorCall
+    });
+    function OnSuccessGetHeaderDetailsCall(data, status) 
+    {
+//Get the access token
+    }
+function OnErrorCall(data,status)
+{
+
+}
+</apex:page>

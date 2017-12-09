@@ -1,0 +1,32 @@
+<apex:page >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    var clientId = "3MVG910YPh8zrcR21drrxuOGIDgk8McLQNpQ1929sp4cNN1xdZqnbxLcARgrz2wGnZNHLmBmvgaB_FQJBKrcT";
+	var clientSecret = "1197226203689467629";
+
+	var authorizationBasic = $.base64.btoa(clientId + ':' + clientSecret);
+
+$.ajax({
+    type: 'POST',
+    url: oAuth.AuthorizationServer,
+    data: { username: 'admin@pinkblue.com', password: 'Glory#20179zKK5JYpkkvbiq58o2nhBq2d', grant_type: 'password' },
+    dataType: "json",
+    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+    xhrFields: {
+       withCredentials: true
+    },
+    // crossDomain: true,
+    headers: {
+       'Authorization': 'Basic ' + authorizationBasic
+    },
+    //beforeSend: function (xhr) {
+    //},
+    success: function (result) {
+       var token = result;
+    },
+    //complete: function (jqXHR, textStatus) {
+    //},
+    error: function (req, status, error) {
+    alert(error);
+    }
+});
+</apex:page>

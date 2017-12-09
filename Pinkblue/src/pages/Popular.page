@@ -1,0 +1,10 @@
+<apex:page controller="ctr_Popular" action="{!webservcie}" showHeader="false">
+<apex:pageBlock >
+<apex:pageBlockSection >
+        <apex:pageBlockTable value="{!mapitems}" var="m">
+            <apex:column headerValue="Key" value="{!m}"/>
+            <apex:column headerValue="Value" value="{!mapitems[m]}"/>
+        </apex:pageBlockTable>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

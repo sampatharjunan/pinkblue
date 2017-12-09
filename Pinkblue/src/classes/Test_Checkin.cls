@@ -1,0 +1,63 @@
+@isTest
+public class Test_Checkin {
+    
+    static testMethod void testCheckin(){
+        
+      /*user u = new user();
+      u.Alias ='ram';
+      u.LastName= 'premier';
+      u.LastName= 'krishna';
+      insert u;*/
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
+       User u = new User(Alias = 'stan', Email='standarduser@testorg00000.com', 
+            EmailEncodingKey='UTF-8', LastName='Testing333333', LanguageLocaleKey='en_US', 
+            LocaleSidKey='en_US', ProfileId = p.Id, 
+            TimeZoneSidKey='America/Los_Angeles', UserName='standarduser0000000@testorg.com',PB_Check_In_Id__c='111gggg1');
+
+       // insert u;
+      
+
+       u = [SELECT id, PB_Check_In_Id__c ,PB_Check_In_Name__c,Entity_Name__c, Phone FROM User WHERE Id = : UserInfo.getUserId() limit 1]; 
+        
+        Lead l= new Lead();
+        l.LastName = 'Raju';
+        l.Email = 'raju@gmail.com';
+        l.MobilePhone='9854754845';
+        l.PB_Alternative_Mobile_Number__c='9854754845';
+        l.Status ='Open';
+        l.Company ='VS';
+        l.OwnerId = u.Id;
+        insert l; 
+        
+       
+       ApexPages.currentPage().getParameters().put('id',l.Id);
+       ApexPages.StandardController controller = new ApexPages.StandardController(l);
+       ctr_checkin c = new ctr_checkin(); 
+      Check_In_Check_Out__c ch = new Check_In_Check_Out__c();
+      ch.PB_Lead_Name__c =l.Id; 
+      ch.PB_Check_In__c = false;
+      ch.PB_Check_In_Location__Latitude__s =12.8995716667; 
+      ch.PB_Check_In_Location__Longitude__s =77.6019733333;  
+      insert ch;
+      c.Updatelocation();
+      //c.Checkoutlocation();
+      c.checkinid = ch.Id;
+      c.lid = l.Id;
+      
+     /* try
+        {
+                    
+                    if(Test.isRunningTest())
+                         integer intTest =1/0;  
+        } catch(exception qe)// exception handling
+            {
+                ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.error, qe.getMessage());
+                
+            }*/
+        
+    
+        
+    }
+
+}

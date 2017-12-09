@@ -1,0 +1,3 @@
+<apex:page >
+  <c:Feedback_vf_component ></c:Feedback_vf_component>
+</apex:page>

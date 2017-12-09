@@ -1,0 +1,11 @@
+<apex:page standardController="Check_In_Check_Out__c">
+
+   <!-- This page must be accessed with an Account Id in the URL. For example: https://<salesforceInstance>/apex/NearbyContacts?id=001D000000JRBet -->
+   <apex:pageBlock rendered="{!If(Check_In_Check_Out__c.PB_Check_In_Location__Latitude__s!=null,true,false) }" >
+      
+         <apex:map width="100%" height="300px" zoomLevel="18" mapType="roadmap" center="{latitude:{!Check_In_Check_Out__c.PB_Check_In_Location__Latitude__s},longitude:{!Check_In_Check_Out__c.PB_Check_In_Location__Longitude__s}}">
+            <apex:mapMarker title="{!Check_In_Check_Out__c.Name}" position="{latitude:{!Check_In_Check_Out__c.PB_Check_In_Location__Latitude__s},longitude:{!Check_In_Check_Out__c.PB_Check_In_Location__Longitude__s}}"/>
+         </apex:map>
+      
+   </apex:pageBlock>
+</apex:page>
