@@ -1,0 +1,19 @@
+{
+    "projectName": "Pinkblue",
+    "username": "admin@pinkblue.com",
+    "id": "97a99080-dcab-11e7-8e7e-3fa7170f3ab3",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://pinkblue--pinkblue.cs72.my.salesforce.com",
+    "workspace": "E:\\SourceTree",
+    "subscription": [
+        "ActionLinkGroupTemplate",
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "AppMenu",
+        "StaticResource"
+    ]
+}
